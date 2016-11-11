@@ -43,8 +43,8 @@ buildNew faui = D.mkDatGui >>= build faui
 runNew :: forall a e. FA.FAUI a -> (a -> Eff (datgui :: D.DATGUI | e) Unit) -> Eff (datgui :: D.DATGUI | e) Unit
 runNew faui x = buildNew faui >>= (\sig -> runSignal (map x sig))
 
-buildNewAndBind :: forall a e. FA.FAUI a -> (Signal a -> FA.FAUI a) -> Eff (datgui :: D.DATGUI | e) (Signal a)
-buildNewAndBind i o = do
+bindNew :: forall a e. FA.FAUI a -> (Signal a -> FA.FAUI a) -> Eff (datgui :: D.DATGUI | e) (Signal a)
+bindNew i o = do
   datgui <- D.mkDatGui
   sig <- build i datgui
   sig2 <- build (o sig) datgui
@@ -56,5 +56,5 @@ ignore v = pure unit
 runEffSignal :: forall a e1. Eff e1 (Signal a) ->  Eff e1 Unit
 runEffSignal effsig = effsig >>= (runSignal <<< map ignore)
 
-buildAndRunIO :: forall a e. FA.FAUI a -> (Signal a -> FA.FAUI a) -> Eff (datgui :: D.DATGUI | e) Unit
-buildAndRunIO i o = runEffSignal (buildNewAndBind i o)
+bindNewRun :: forall a e. FA.FAUI a -> (Signal a -> FA.FAUI a) -> Eff (datgui :: D.DATGUI | e) Unit
+bindNewRun i o = runEffSignal (bindNew i o)
