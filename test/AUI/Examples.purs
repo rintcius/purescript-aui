@@ -22,8 +22,11 @@ ui2 = FA.stringField "" "Hello" <> pure " " <> FA.stringField "" "World"
 -- Example 3
 
 ui3 :: FA.FAUI Int
-ui3 = sum <$> traverse (\i -> FA.intField "" (state i)) [2, 13, 27, 42] where
-  state i = A.IntFieldState { current : i, min : Just $ i * (-1), max : Just $ 2 * i }
+ui3 = sum <$> traverse (\i -> FA.intField (label i) (state i)) [2, 13, 27, 42] where
+  min   i = (-1) * i
+  max   i = 2 * i
+  label i = "[" <> show (min i) <> ".." <> show (max i) <> "]"
+  state i = A.IntFieldState { current : i, min : Just $ min i, max : Just $ max i }
 
 -- Example 4
 

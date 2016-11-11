@@ -16,7 +16,7 @@ Note: this library is not yet upgraded to Purescript 0.10 (it uses 0.9.3).
 
 ## Examples
 
-The examples are ported from [these Flare examples](http://sharkdp.github.io/purescript-flare/).
+The examples are derived from [these Flare examples](http://sharkdp.github.io/purescript-flare/).
 
 * [specification of these examples](https://github.com/rintcius/purescript-aui/blob/master/test/AUI/Examples.purs)
 * [Flare interpretation](https://github.com/rintcius/purescript-aui/blob/master/test/AUI/Flare/Examples.purs)
