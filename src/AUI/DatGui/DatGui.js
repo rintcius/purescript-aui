@@ -82,6 +82,26 @@ exports.addButtonToGui = function(label) {
   }
 }
 
+exports.addIntToGui = function(label) {
+  return function(value) {
+    return function(min) {
+      return function(max) {
+        return function(gui) {
+          return function() {
+            var v = mkVar(label, value);
+            var sig = mkSignal(value);
+            var controller = gui.add(v, label, min, max, 1);
+            controller.onChange(function(newValue) {
+              sig.set(newValue);
+            });
+            return sig;
+          }
+        }
+      }
+    }
+  }
+}
+
 exports.addToGui = function(label) {
   return function(value) {
     return function(gui) {

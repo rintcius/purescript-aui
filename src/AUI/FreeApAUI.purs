@@ -30,7 +30,7 @@ liftFAUI = FAUI <<< liftFreeAp
 numberField :: A.Label -> Number -> FAUI Number
 numberField l v = liftFAUI $ A.NumberField l v id
 
-intField :: A.Label -> Int -> FAUI Int
+intField :: A.Label -> A.IntFieldState -> FAUI Int
 intField l v = liftFAUI $ A.IntField l v id
 
 stringField :: A.Label -> String -> FAUI String

@@ -9,11 +9,13 @@ import Control.Applicative.Free (foldFreeAp)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Exception.Unsafe (unsafeThrow)
 import Data.Array (fromFoldable)
+import Data.Maybe (fromMaybe)
 import Signal (runSignal, Signal, (~>))
 
 toUI :: forall e. A.AUI ~> DUI e
 toUI (A.NumberField l v f) = DUI $ D.addToGui l (f v)
-toUI (A.IntField l v f) = DUI $ D.addToGui l (f v)
+toUI (A.IntField l (A.IntFieldState v) f) =
+  DUI $ D.addIntToGui l (f v.current) (fromMaybe bottom v.min) (fromMaybe top v.max)
 toUI (A.StringField l v f) = DUI $ D.addToGui l (f v)
 toUI (A.Checkbox l (A.CheckboxState v)) = DUI $ xxx <$> D.addToGui l (toBoolean v) where
   toBoolean { status : A.Checked } = true
