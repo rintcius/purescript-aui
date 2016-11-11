@@ -1,0 +1,48 @@
+body {
+    margin: 40px;
+}
+
+pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    width: 830px;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.flare-input {
+    margin-bottom: 5px;
+}
+
+input:invalid {
+    background-color: #ff5050;
+}
+
+.flare-input-number, .flare-input-int-number {
+    width: 80px;
+}
+
+input[type="range"] {
+    width: 150px;
+    border: 1px solid transparent;
+}
+
+label {
+    width: 150px;
+    display: inline-block;
+}
+
+table {
+    width: 300px;
+    height: 300px;
+}
+
+td {
+    text-align: center;
+    border: 1px solid black;
+    padding: 3px;
+    font-size: 11px;
+}

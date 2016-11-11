@@ -1,0 +1,23 @@
+{
+  "name": "purescript-aui",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-freeap": "^1.0.0",
+    "purescript-flare": "^1.1.0",
+    "purescript-lists": "^1.0.1",
+    "purescript-signal": "^7.0.0"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^1.0.0"
+  },
+  "resolutions": {
+    "purescript-signal": "^7.0.0",
+    "purescript-dom": "~2.0.1",
+    "purescript-js-date": "^2.0.0"
+  }
+}
