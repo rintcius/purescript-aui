@@ -1,13 +1,13 @@
 module AUI.AUI where
 
 import Data.List (List, (:))
-import Data.Maybe (Maybe)
 import Signal (Signal)
 
 type Label = String
 data NumberConstraints = NoNumberConstraints | WithNumberConstraints { min :: Number, max :: Number, step :: Number }
 data NumberFieldState = NumberFieldState { current :: Number, constraints :: NumberConstraints }
-data IntFieldState = IntFieldState { current :: Int, min :: Maybe Int, max :: Maybe Int }
+data IntConstraints = NoIntConstraints | WithIntConstraints { min :: Int, max :: Int }
+data IntFieldState = IntFieldState { current :: Int, constraints :: IntConstraints }
 data CheckboxStatus = Checked | Unchecked
 newtype CheckboxState a = CheckboxState { status :: CheckboxStatus, checked :: a, unchecked :: a }
 newtype ButtonState a = ButtonState { up :: a, down :: a }

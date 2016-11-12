@@ -6,16 +6,17 @@ import AUI.FreeApAUI as FA
 import Flare as F
 import Control.Applicative.Free (foldFreeAp)
 import Control.Monad.Eff.Exception.Unsafe (unsafeThrow)
-import Data.Maybe (fromMaybe)
 import Data.NonEmpty ((:|))
 
 toUI :: forall e. A.AUI ~> F.UI e
-toUI (A.NumberField l (A.NumberFieldState { current : current, constraints : c }) f) =
-  f <$> nr c where
-    nr (A.WithNumberConstraints n) = F.numberRange l n.min n.max n.step current
-    nr A.NoNumberConstraints = F.number l current
-toUI (A.IntField l (A.IntFieldState v) f) =
-  f <$> F.intRange l (fromMaybe bottom v.min) (fromMaybe top v.max) v.current
+toUI (A.NumberField l (A.NumberFieldState { current : current, constraints : cs }) f) =
+  f <$> nrF cs where
+    nrF A.NoNumberConstraints = F.number l current
+    nrF (A.WithNumberConstraints c) = F.numberRange l c.min c.max c.step current
+toUI (A.IntField l (A.IntFieldState { current : current, constraints : cs }) f) =
+  f <$> intF cs where
+    intF (A.WithIntConstraints c) = F.intRange l c.min c.max current
+    intF A.NoIntConstraints = F.int l current
 toUI (A.StringField l v f) = f <$> F.string l v
 toUI (A.Checkbox l (A.CheckboxState v)) = toA <$> F.boolean l (toBoolean v) where
   toBoolean { status : A.Checked } = true

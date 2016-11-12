@@ -5,7 +5,6 @@ import AUI.AUI as A
 import AUI.FreeApAUI as FA
 import Control.Apply (lift2)
 import Data.List (List(Nil), (:))
-import Data.Maybe (Maybe(Just))
 import Data.Traversable (traverse, sum)
 import Math (pow)
 
@@ -25,9 +24,9 @@ ui2 = FA.stringField "" "Hello" <> pure " " <> FA.stringField "" "World"
 ui3 :: FA.FAUI Int
 ui3 = sum <$> traverse (\i -> FA.intField (label i) (state i)) [2, 13, 27, 42] where
   min   i = (-1) * i
-  max   i = 2 * i
+  max   i = i * i
   label i = "[" <> show (min i) <> ".." <> show (max i) <> "]"
-  state i = A.IntFieldState { current : i, min : Just $ min i, max : Just $ max i }
+  state i = A.IntFieldState { current : i, constraints : A.WithIntConstraints { min : min i, max : max i }}
 
 -- Example 4
 
