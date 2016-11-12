@@ -5,9 +5,9 @@ import Signal (Signal)
 
 type Label = String
 data NumberConstraints = NoNumberConstraints | WithNumberConstraints { min :: Number, max :: Number, step :: Number }
-data NumberFieldState = NumberFieldState { current :: Number, constraints :: NumberConstraints }
+data NumberFieldState = NumberFieldState { value :: Number, constraints :: NumberConstraints }
 data IntConstraints = NoIntConstraints | WithIntConstraints { min :: Int, max :: Int }
-data IntFieldState = IntFieldState { current :: Int, constraints :: IntConstraints }
+data IntFieldState = IntFieldState { value :: Int, constraints :: IntConstraints }
 data CheckboxStatus = Checked | Unchecked
 newtype CheckboxState a = CheckboxState { status :: CheckboxStatus, checked :: a, unchecked :: a }
 newtype ButtonState a = ButtonState { up :: a, down :: a }

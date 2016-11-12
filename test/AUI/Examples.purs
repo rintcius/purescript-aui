@@ -12,7 +12,7 @@ import Math (pow)
 
 ui1 :: FA.FAUI Number
 ui1 = pow <$> FA.numberField "Base" (state 2.0) <*> FA.numberField "Exponent" (state 10.0) where
-  state i = A.NumberFieldState { current : i, constraints : A.WithNumberConstraints { min : -100.0, max : 100.0, step : 0.5 }}
+  state v = A.NumberFieldState { value : v, constraints : A.WithNumberConstraints { min : -100.0, max : 100.0, step : 0.5 }}
 
 -- Example 2
 
@@ -26,13 +26,13 @@ ui3 = sum <$> traverse (\i -> FA.intField (label i) (state i)) [2, 13, 27, 42] w
   min   i = (-1) * i
   max   i = i * i
   label i = "[" <> show (min i) <> ".." <> show (max i) <> "]"
-  state i = A.IntFieldState { current : i, constraints : A.WithIntConstraints { min : min i, max : max i }}
+  state i = A.IntFieldState { value : i, constraints : A.WithIntConstraints { min : min i, max : max i }}
 
 -- Example 4
 
 ui4 :: FA.FAUI Number
 ui4 = lift2 (/) (FA.numberField "" (state 5.0)) (FA.numberField "" (state 2.0)) where
-  state i = A.NumberFieldState { current : i, constraints : A.NoNumberConstraints }
+  state v = A.NumberFieldState { value : v, constraints : A.NoNumberConstraints }
 
 -- Example 6
 

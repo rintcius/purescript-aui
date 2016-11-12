@@ -9,14 +9,14 @@ import Control.Monad.Eff.Exception.Unsafe (unsafeThrow)
 import Data.NonEmpty ((:|))
 
 toUI :: forall e. A.AUI ~> F.UI e
-toUI (A.NumberField l (A.NumberFieldState { current : current, constraints : cs }) f) =
+toUI (A.NumberField l (A.NumberFieldState { value : v, constraints : cs }) f) =
   f <$> nrF cs where
-    nrF A.NoNumberConstraints = F.number l current
-    nrF (A.WithNumberConstraints c) = F.numberRange l c.min c.max c.step current
-toUI (A.IntField l (A.IntFieldState { current : current, constraints : cs }) f) =
+    nrF A.NoNumberConstraints = F.number l v
+    nrF (A.WithNumberConstraints c) = F.numberRange l c.min c.max c.step v
+toUI (A.IntField l (A.IntFieldState { value : v, constraints : cs }) f) =
   f <$> intF cs where
-    intF (A.WithIntConstraints c) = F.intRange l c.min c.max current
-    intF A.NoIntConstraints = F.int l current
+    intF (A.WithIntConstraints c) = F.intRange l c.min c.max v
+    intF A.NoIntConstraints = F.int l v
 toUI (A.StringField l v f) = f <$> F.string l v
 toUI (A.Checkbox l (A.CheckboxState v)) = toA <$> F.boolean l (toBoolean v) where
   toBoolean { status : A.Checked } = true

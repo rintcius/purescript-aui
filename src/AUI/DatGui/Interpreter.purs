@@ -12,12 +12,12 @@ import Data.Array (fromFoldable)
 import Signal (runSignal, Signal, (~>))
 
 toUI :: forall e. A.AUI ~> DUI e
-toUI (A.NumberField l (A.NumberFieldState { current : current, constraints : c }) f) = DUI $ add c where
-  add (A.WithNumberConstraints n) = D.addNumberToGui l (f current) n.min n.max n.step
-  add A.NoNumberConstraints = D.addToGui l (f current)
-toUI (A.IntField l (A.IntFieldState { current : current, constraints : c }) f) = DUI $ add c where
-  add (A.WithIntConstraints c) = D.addIntToGui l (f current) c.min c.max
-  add A.NoIntConstraints = D.addIntToGui l (f current) bottom top
+toUI (A.NumberField l (A.NumberFieldState { value : v, constraints : cs }) f) = DUI $ add cs where
+  add (A.WithNumberConstraints n) = D.addNumberToGui l (f v) n.min n.max n.step
+  add A.NoNumberConstraints = D.addToGui l (f v)
+toUI (A.IntField l (A.IntFieldState { value : v, constraints : cs }) f) = DUI $ add cs where
+  add (A.WithIntConstraints c) = D.addIntToGui l (f v) c.min c.max
+  add A.NoIntConstraints = D.addIntToGui l (f v) bottom top
 toUI (A.StringField l v f) = DUI $ D.addToGui l (f v)
 toUI (A.Checkbox l (A.CheckboxState v)) = DUI $ xxx <$> D.addToGui l (toBoolean v) where
   toBoolean { status : A.Checked } = true
