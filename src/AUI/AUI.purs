@@ -1,5 +1,6 @@
 module AUI.AUI where
 
+import Data.Iso (Iso(Iso))
 import Data.List (List, (:))
 import Signal (Signal)
 
@@ -33,3 +34,10 @@ selected (Select s _ _) = s
 
 selectedRadio :: forall a. RadioGroupState a -> a
 selectedRadio (Radio s _ _) = s
+
+isoCheckboxStatusBoolean :: Iso CheckboxStatus Boolean
+isoCheckboxStatusBoolean = Iso to from where
+  to Checked = true
+  to Unchecked = false
+  from true = Checked
+  from false = Unchecked

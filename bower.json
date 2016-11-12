@@ -9,6 +9,7 @@
   "dependencies": {
     "purescript-freeap": "^1.0.0",
     "purescript-flare": "^1.1.0",
+    "purescript-isomorphisms": "^2.0.0",
     "purescript-lists": "^1.0.1",
     "purescript-signal": "^7.0.0"
   },
