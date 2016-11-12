@@ -5,6 +5,8 @@ import Data.Maybe (Maybe)
 import Signal (Signal)
 
 type Label = String
+data NumberConstraints = NoNumberConstraints | WithNumberConstraints { min :: Number, max :: Number, step :: Number }
+data NumberFieldState = NumberFieldState { current :: Number, constraints :: NumberConstraints }
 data IntFieldState = IntFieldState { current :: Int, min :: Maybe Int, max :: Maybe Int }
 data CheckboxStatus = Checked | Unchecked
 newtype CheckboxState a = CheckboxState { status :: CheckboxStatus, checked :: a, unchecked :: a }
@@ -13,7 +15,7 @@ data SelectboxState a = Select a (List a) (a -> String)
 data RadioGroupState a = Radio a (List a) (a -> String)
 
 data AUI a
-  = NumberField Label Number (Number -> a)
+  = NumberField Label NumberFieldState (Number -> a)
   | IntField Label IntFieldState (Int -> a)
   | StringField Label String (String -> a)
   | Checkbox Label (CheckboxState a)

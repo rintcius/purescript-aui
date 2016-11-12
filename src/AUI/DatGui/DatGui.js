@@ -102,6 +102,28 @@ exports.addIntToGui = function(label) {
   }
 }
 
+exports.addNumberToGui = function(label) {
+  return function(value) {
+    return function(min) {
+      return function(max) {
+        return function(step) {
+          return function(gui) {
+            return function() {
+              var v = mkVar(label, value);
+              var sig = mkSignal(value);
+              var controller = gui.add(v, label, min, max, step);
+              controller.onChange(function(newValue) {
+                sig.set(newValue);
+              });
+              return sig;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 exports.addToGui = function(label) {
   return function(value) {
     return function(gui) {

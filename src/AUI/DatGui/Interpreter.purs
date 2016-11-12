@@ -13,7 +13,9 @@ import Data.Maybe (fromMaybe)
 import Signal (runSignal, Signal, (~>))
 
 toUI :: forall e. A.AUI ~> DUI e
-toUI (A.NumberField l v f) = DUI $ D.addToGui l (f v)
+toUI (A.NumberField l (A.NumberFieldState { current : current, constraints : c }) f) = DUI $ add c where
+  add (A.WithNumberConstraints n) = D.addNumberToGui l (f current) n.min n.max n.step
+  add A.NoNumberConstraints = D.addToGui l (f current)
 toUI (A.IntField l (A.IntFieldState v) f) =
   DUI $ D.addIntToGui l (f v.current) (fromMaybe bottom v.min) (fromMaybe top v.max)
 toUI (A.StringField l v f) = DUI $ D.addToGui l (f v)

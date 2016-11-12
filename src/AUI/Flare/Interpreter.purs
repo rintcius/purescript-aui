@@ -6,12 +6,14 @@ import AUI.FreeApAUI as FA
 import Flare as F
 import Control.Applicative.Free (foldFreeAp)
 import Control.Monad.Eff.Exception.Unsafe (unsafeThrow)
---import Data.Bounded (top, bottom)
 import Data.Maybe (fromMaybe)
 import Data.NonEmpty ((:|))
 
 toUI :: forall e. A.AUI ~> F.UI e
-toUI (A.NumberField l v f) = f <$> F.number l v
+toUI (A.NumberField l (A.NumberFieldState { current : current, constraints : c }) f) =
+  f <$> nr c where
+    nr (A.WithNumberConstraints n) = F.numberRange l n.min n.max n.step current
+    nr A.NoNumberConstraints = F.number l current
 toUI (A.IntField l (A.IntFieldState v) f) =
   f <$> F.intRange l (fromMaybe bottom v.min) (fromMaybe top v.max) v.current
 toUI (A.StringField l v f) = f <$> F.string l v

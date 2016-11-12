@@ -27,7 +27,7 @@ instance monoidFAUI :: (Monoid a) => Monoid (FAUI a) where
 liftFAUI :: forall a. A.AUI a -> FAUI a
 liftFAUI = FAUI <<< liftFreeAp
 
-numberField :: A.Label -> Number -> FAUI Number
+numberField :: A.Label -> A.NumberFieldState -> FAUI Number
 numberField l v = liftFAUI $ A.NumberField l v id
 
 intField :: A.Label -> A.IntFieldState -> FAUI Int
