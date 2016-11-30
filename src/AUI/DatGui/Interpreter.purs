@@ -11,7 +11,7 @@ import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Exception.Unsafe (unsafeThrow)
 import Data.Array (fromFoldable)
 import Data.Iso (backwards, forwards)
-import Signal (runSignal, Signal, (~>))
+import Signal (runSignal, Signal)
 
 toUI :: forall e. A.AUI ~> DUI e
 toUI (A.NumberField l (A.NumberFieldState { value : v, constraints : cs }) f) = DUI $ add cs where

@@ -1,7 +1,7 @@
 module AUI.AUI where
 
 import Data.Iso (Iso(Iso))
-import Data.List (List, (:))
+import Data.List (List)
 import Signal (Signal)
 
 type Label = String

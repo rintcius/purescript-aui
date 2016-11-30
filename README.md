@@ -12,8 +12,6 @@ Currently 2 interpreters have been implemented, one showing the UI using
 [Flare](https://github.com/sharkdp/purescript-flare/)
 and the other one showing it using [dat.GUI](https://github.com/dataarts/dat.gui).
 
-Note: this library is not yet upgraded to Purescript 0.10 (it uses 0.9.3).
-
 ## Examples
 
 The examples are derived from [these Flare examples](http://sharkdp.github.io/purescript-flare/).

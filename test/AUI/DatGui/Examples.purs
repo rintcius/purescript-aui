@@ -6,7 +6,7 @@ import AUI.DatGui.Interpreter as I
 import AUI.FreeApAUI as FA
 import AUI.Examples as Ex
 import Control.Monad.Eff (Eff)
-import Signal (foldp, (~>))
+import Signal (foldp)
 
 main :: forall e. Eff (datgui :: D.DATGUI | e) Unit
 main = do
