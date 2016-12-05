@@ -1,5 +1,8 @@
 # AUI
 
+[![Latest release](http://img.shields.io/github/release/rintcius/purescript-aui.svg)](https://github.com/rintcius/purescript-aui/releases)
+[![Travis branch](https://img.shields.io/travis/rintcius/purescript-aui/master.svg)](https://travis-ci.org/rintcius/purescript-aui)
+
 ## Description
 
 `purescript-aui` (Algebraic User Interface) is a library written in Purescript
@@ -23,12 +26,19 @@ The examples are derived from [these Flare examples](http://sharkdp.github.io/pu
 ## Build
 
 ```
-bower install
+# if purescript and pulp are already installed
+npm install --production  
 
-pulp browserify -O -I test --main AUI.Flare.Examples --to output/flare-examples.js
-pulp browserify -O -I test --main AUI.DatGui.Examples --to output/datgui-examples.js
+# or to install purescript and pulp locally
+npm install
 
-open resources/*.html
+# build the project
+npm run build
+
+# build the examples
+npm run build-examples
+
+open resources/*.html   # in your favourite browser
 ```
 
 ## Thanks!
