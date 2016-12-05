@@ -1,4 +1,4 @@
-# AUI
+# purescript-aui
 
 [![Latest release](http://img.shields.io/github/release/rintcius/purescript-aui.svg)](https://github.com/rintcius/purescript-aui/releases)
 [![Travis branch](https://img.shields.io/travis/rintcius/purescript-aui/master.svg)](https://travis-ci.org/rintcius/purescript-aui)
