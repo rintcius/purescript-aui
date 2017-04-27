@@ -1,0 +1,13 @@
+{
+    "name": "purescript-aui",
+    "set": "master",
+    "source": "https://github.com/rintcius/package-sets.git",
+    "depends": [
+        "flare",
+        "freeap",
+        "signal",
+        "lists",
+        "isomorphisms",
+        "prelude"
+    ]
+}
