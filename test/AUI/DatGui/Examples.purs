@@ -1,14 +1,14 @@
 module AUI.DatGui.Examples where
 
 import Prelude
-import AUI.DatGui.DatGui as D
+
 import AUI.DatGui.Interpreter as I
-import AUI.FreeApAUI as FA
 import AUI.Examples as Ex
-import Control.Monad.Eff (Eff)
+import AUI.FreeApAUI as FA
+import Effect (Effect)
 import Signal (foldp)
 
-main :: forall e. Eff (datgui :: D.DATGUI | e) Unit
+main :: Effect Unit
 main = do
   I.bindNewRun Ex.ui1  (FA.outputField "pow")
   I.bindNewRun Ex.ui2  (FA.outputField "output")

@@ -1,12 +1,13 @@
 module AUI.DatGui.DUI where
 
 import Prelude
-import AUI.DatGui.DatGui (DatGui, DATGUI)
+
+import AUI.DatGui.DatGui (DatGui)
 import Control.Apply (lift2)
-import Control.Monad.Eff (Eff)
+import Effect (Effect)
 import Signal (Signal)
 
-newtype DUI e a = DUI (DatGui -> Eff (datgui :: DATGUI | e) (Signal a))
+newtype DUI e a = DUI (DatGui -> Effect (Signal a))
 
 instance functorDUI :: Functor (DUI e) where
   map f (DUI a) = DUI $ map (map (map f)) a

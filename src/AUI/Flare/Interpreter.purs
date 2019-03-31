@@ -1,16 +1,16 @@
 module AUI.Flare.Interpreter where
 
 import Prelude
+
 import AUI.AUI as A
 import AUI.FreeApAUI as FA
-import Flare as F
-import AUI.AUI (isoCheckboxStatusBoolean)
 import Control.Applicative.Free (foldFreeAp)
-import Control.Monad.Eff.Exception.Unsafe (unsafeThrow)
 import Data.Iso (forwards, backwards)
 import Data.NonEmpty ((:|))
+import Effect.Exception.Unsafe (unsafeThrow)
+import Flare as F
 
-toUI :: forall e. A.AUI ~> F.UI e
+toUI :: A.AUI ~> F.UI
 toUI (A.NumberField l (A.NumberFieldState { value : v, constraints : cs }) f) =
   f <$> nrF cs where
     nrF A.NoNumberConstraints = F.number l v
@@ -21,13 +21,13 @@ toUI (A.IntField l (A.IntFieldState { value : v, constraints : cs }) f) =
     intF A.NoIntConstraints = F.int l v
 toUI (A.StringField l v f) = f <$> F.string l v
 toUI (A.Checkbox l (A.CheckboxState v@{ status : s })) = toA <$> F.boolean l (toBoolean s) where
-  toBoolean = forwards isoCheckboxStatusBoolean
-  toStatus = backwards isoCheckboxStatusBoolean
+  toBoolean = forwards A.isoCheckboxStatusBoolean
+  toStatus = backwards A.isoCheckboxStatusBoolean
   toA b = A.selectedCheckbox (A.CheckboxState (v { status = toStatus b }))
 toUI (A.Button l (A.ButtonState v)) = F.button l v.up v.down
 toUI (A.Selectbox l (A.Select s r toString)) = F.select l (s :| r) toString
 toUI (A.RadioGroup l (A.Radio s r toString)) = F.radioGroup l (s :| r) toString
 toUI _ = unsafeThrow "TODO"
 
-run :: forall a e. FA.FAUI a -> F.UI e a
+run :: forall a. FA.FAUI a -> F.UI a
 run (FA.FAUI c) = foldFreeAp toUI c
