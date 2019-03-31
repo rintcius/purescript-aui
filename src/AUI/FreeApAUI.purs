@@ -4,7 +4,6 @@ import Prelude
 import AUI.AUI as A
 import Control.Applicative.Free (FreeAp, liftFreeAp)
 import Control.Apply (lift2)
-import Data.Monoid (mempty, class Monoid)
 import Signal (Signal)
 
 newtype FAUI a = FAUI (FreeAp A.AUI a)
@@ -28,13 +27,13 @@ liftFAUI :: forall a. A.AUI a -> FAUI a
 liftFAUI = FAUI <<< liftFreeAp
 
 numberField :: A.Label -> A.NumberFieldState -> FAUI Number
-numberField l v = liftFAUI $ A.NumberField l v id
+numberField l v = liftFAUI $ A.NumberField l v identity
 
 intField :: A.Label -> A.IntFieldState -> FAUI Int
-intField l v = liftFAUI $ A.IntField l v id
+intField l v = liftFAUI $ A.IntField l v identity
 
 stringField :: A.Label -> String -> FAUI String
-stringField l v = liftFAUI $ A.StringField l v id
+stringField l v = liftFAUI $ A.StringField l v identity
 
 checkbox :: forall a. A.Label -> A.CheckboxState a -> FAUI a
 checkbox l v = liftFAUI $ A.Checkbox l v
