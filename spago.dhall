@@ -1,11 +1,14 @@
-{-
-Welcome to a Spago project!
-You can edit this file as you like.
--}
-{ name =
-    "purescript-aui"
+{ sources = [ "src/**/*.purs", "test/**/*.purs" ]
+, name = "purescript-aui"
 , dependencies =
-    [ "console", "effect", "flare", "freeap", "isomorphisms", "lists", "prelude", "signal" ]
-, packages =
-    ./packages.dhall
+  [ "console"
+  , "effect"
+  , "flare"
+  , "freeap"
+  , "isomorphisms"
+  , "lists"
+  , "prelude"
+  , "signal"
+  ]
+, packages = ./packages.dhall
 }

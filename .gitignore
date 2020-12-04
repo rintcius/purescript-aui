@@ -5,3 +5,4 @@
 /output/
 /.psc*
 /src/.webpack.js
+/.spago/
