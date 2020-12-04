@@ -26,10 +26,7 @@ The examples are derived from [these Flare examples](http://sharkdp.github.io/pu
 ## Build
 
 ```
-# if purescript and pulp are already installed
-npm install --production  
-
-# or to install purescript and pulp locally
+# install dev dependencies
 npm install
 
 # build the project
