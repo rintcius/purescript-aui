@@ -48,7 +48,7 @@ let additions =
           , "web-dom"
           ]
       , repo = "https://github.com/sharkdp/purescript-flare.git"
-      , version = "v5.0.0"
+      , version = "v6.0.0"
       }
   }
 
